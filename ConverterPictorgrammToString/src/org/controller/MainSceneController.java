@@ -32,6 +32,8 @@ public class MainSceneController
         // creating an new MainView Object
         _mainView = new MainView();
         
+        _primaryStage.setTitle("PictorgrammToString Converter");
+        
         // get the Scene from _mainView and set it as Scene for the primaryStage
         _primaryStage.setScene(_mainView.getScene());
         
