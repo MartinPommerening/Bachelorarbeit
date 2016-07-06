@@ -9,6 +9,22 @@ package org.services;
  *
  * @author Martin
  */
-public class EventManager {
+public class EventManager 
+{
+    private static EventManager _instance = null;
+    
+    public static EventManager getInstance()
+    {
+        if(_instance == null)
+        {
+            _instance = new EventManager();
+        }
+        return _instance;
+    }
+    
+    private EventManager()
+    {
+        
+    }
     
 }

@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.view;
+package org.scene;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
  *
  * @author Martin
  */
-public class MainView extends Scene 
+public class MainScene extends Scene 
 {
-    public MainView()
-    {
-        
+
+    public MainScene(Parent root, double width, double height) {
+        super(root, width, height);
     }
+    
 }

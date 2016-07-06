@@ -6,6 +6,7 @@
 package org.controller;
 
 import javafx.stage.Stage;
+import org.scene.MainScene;
 import org.services.EventManager;
 
 /**
@@ -16,6 +17,7 @@ public class ApplicationController
 {
     private static ApplicationController _instance  = null;
     private EventManager _eventManager              = null;
+    private MainScene _mainScene                    = null;
     
     public static ApplicationController getInstance()
     {
@@ -30,11 +32,13 @@ public class ApplicationController
     public void initialize(Stage _primaryStage)
     {
         _primaryStage.setTitle("PictrogrammToString");
-        _primaryStage.
+        _primaryStage.setScene(_mainScene);
+        _primaryStage.show();
     }
     
     private ApplicationController()
     {
-        _eventManager = new EventManager();
+        _eventManager   = new EventManager();
+        _mainScene      = new MainScene();
     }
 }
