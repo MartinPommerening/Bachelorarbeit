@@ -6,14 +6,19 @@
 package org.scene;
 
 
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import org.services.DragAndDropEventHandler;
 
 
 /**
@@ -25,6 +30,8 @@ public class MainView
 
     private Scene _mainScene = null;
     private BorderPane _border = null;
+    private Image _image = null;
+    private ImageView _imageView = null;
     
     public MainView()
     {
@@ -40,6 +47,24 @@ public class MainView
         hbox.getChildren().add(helloWorldText);
         _border.setTop(hbox);
         
+        FlowPane flow = new FlowPane();
+        flow.setPadding(new Insets(5, 0, 5, 0));
+        //flow.setVgap(4);
+        flow.setHgap(10);
+        flow.setPrefWrapLength(300); // preferred width allows for two columns
+        flow.setStyle("-fx-background-color: DAE6F3;");
+        
+        for (int i = 0; i<3;i++)
+        {
+            _image = new Image("images/img01.jpg");
+            _imageView = new ImageView(_image);
+            _imageView.setFitHeight(100);
+            _imageView.setFitWidth(100);
+            _imageView.setOnDragDetected(new DragAndDropEventHandler());
+            flow.getChildren().add(_imageView);
+        }
+        
+        _border.setBottom(flow);
         
         _mainScene = new Scene(_border, 800, 600);
     }
