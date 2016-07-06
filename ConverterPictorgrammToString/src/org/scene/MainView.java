@@ -5,18 +5,26 @@
  */
 package org.scene;
 
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 
 /**
  *
  * @author Martin
  */
-public class MainScene extends Scene 
+public class MainView
 {
 
-    public MainScene(Parent root, double width, double height) {
-        super(root, width, height);
+    private Scene _mainScene = null;
+    
+    public MainView()
+    {
+        
+    }
+    
+    public final Scene getScene()
+    {
+        return _mainScene;
     }
     
 }
