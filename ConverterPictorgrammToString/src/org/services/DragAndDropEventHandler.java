@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 
 /**
  *
@@ -24,28 +23,18 @@ public class DragAndDropEventHandler implements EventHandler<MouseEvent>
     
     @Override
     public void handle(MouseEvent event) {
-        System.out.println("Drag detectet!");
-        //_clipBoard.putImage(_ImageSource.getImage());
-        //_db.setContent(_clipBoard);
-        //event.consume();
-        System.err.println(event.getSource());
+        System.out.println("org.services.DragAndDropEventHandler.handle()");
     }
     
-    
-    public DragAndDropEventHandler(ImageView _source)
-    {
-        _db = _source.startDragAndDrop(TransferMode.ANY);
-        _clipBoard = new ClipboardContent();
-        _ImageSource = _source;
-        
-        
-        
-        
-    }
+//    public DragAndDropEventHandler(ImageView _source)
+//    {
+//        _db = _source.startDragAndDrop(TransferMode.ANY);
+//        _clipBoard = new ClipboardContent();
+//        _ImageSource = _source;  
+//    }
     
     public DragAndDropEventHandler()
     {
         
     }
-    
 }

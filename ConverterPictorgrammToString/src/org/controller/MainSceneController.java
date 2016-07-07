@@ -5,8 +5,6 @@
  */
 package org.controller;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.scene.MainView;
 
@@ -43,12 +41,4 @@ public class MainSceneController
         _primaryStage.sizeToScene();
         _primaryStage.show();
     }
-    
-    private void initializeSourceImageContainer()
-    {
-        Image testImage = new Image("images/img01.jpg");
-        ImageView testImageView = new ImageView(testImage);
-    }
-    
-    
 }

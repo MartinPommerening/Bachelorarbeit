@@ -5,25 +5,44 @@
  */
 package org.model;
 
-import java.awt.List;
+import java.util.ArrayList;
+
 
 /**
  *
- * @author Martin
+ * @author Martin Pommerening
  */
-public class SourceImageContainer extends List
+public class SourceImageContainer
 {
-    private static SourceImageContainer _instance = null;
+    private ArrayList<Pictrogram> _listSourceImage = null;
     
-    public static SourceImageContainer getInstance()
+    public SourceImageContainer()
     {
-        if(_instance == null)
-        {
-            _instance = new SourceImageContainer();
-        }
-        return _instance;
+        _listSourceImage = new ArrayList<>();
     }
     
-    private SourceImageContainer()
-    {}
+    public void add(Pictrogram _picto)
+    {
+        _listSourceImage.add(_picto);
+    }
+    
+    public void removeIndex(int _index)
+    {
+        _listSourceImage.remove(_index);
+    }
+    
+    public void removeObject(Pictrogram _picto)
+    {
+        _listSourceImage.remove(_picto);
+    }
+    
+    public void removeAll()
+    {
+        _listSourceImage.removeAll(_listSourceImage);
+    }
+    
+    public int size()
+    {
+       return  _listSourceImage.size();
+    }
 }

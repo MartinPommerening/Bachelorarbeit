@@ -5,8 +5,6 @@
  */
 package org.scene;
 
-
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -28,14 +26,22 @@ import org.services.DragAndDropEventHandler;
 public class MainView
 {
 
-    private Scene _mainScene = null;
-    private BorderPane _border = null;
-    private Image _image = null;
-    private ImageView _imageView = null;
+    private Scene _mainScene            = null;
+    private BorderPane _border          = null;
+    private Image _image                = null;
+    private ImageView _imageView        = null;
     
     public MainView()
     {
         _border = new BorderPane();
+        _border.setTop(generateTopContent());
+        _border.setBottom(generateBottomContent());
+        
+        _mainScene = new Scene(_border, 800, 600);
+    }
+    
+    private HBox generateTopContent()
+    {
         Text helloWorldText = new Text("Hello World!");
         helloWorldText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         helloWorldText.setFill(Color.WHITE);
@@ -45,8 +51,12 @@ public class MainView
         hbox.setSpacing(10);
         hbox.setStyle("-fx-background-color: #336699;");
         hbox.getChildren().add(helloWorldText);
-        _border.setTop(hbox);
         
+        return hbox;
+    }
+    
+    private FlowPane generateBottomContent()
+    {
         FlowPane flow = new FlowPane();
         flow.setPadding(new Insets(5, 0, 5, 0));
         //flow.setVgap(4);
@@ -64,10 +74,13 @@ public class MainView
             flow.getChildren().add(_imageView);
         }
         
-        _border.setBottom(flow);
-        
-        _mainScene = new Scene(_border, 800, 600);
+        return flow;
     }
+    
+//    public void setSourceData(ListArray<> _sourceList)
+//    {
+//        
+//    }
     
     public final Scene getScene()
     {

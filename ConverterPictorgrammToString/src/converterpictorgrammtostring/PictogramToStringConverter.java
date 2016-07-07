@@ -13,7 +13,7 @@ import org.controller.MainSceneController;
  *
  * @author Martin
  */
-public class ConverterPictorgrammToString extends Application {
+public class PictogramToStringConverter extends Application {
     
     @Override
     public void start(Stage primaryStage) {
