@@ -24,6 +24,7 @@ public class DragAndDropEventHandler implements EventHandler<MouseEvent>
     @Override
     public void handle(MouseEvent event) {
         System.out.println("org.services.DragAndDropEventHandler.handle()");
+        
     }
     
 //    public DragAndDropEventHandler(ImageView _source)

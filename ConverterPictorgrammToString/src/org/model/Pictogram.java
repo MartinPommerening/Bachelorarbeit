@@ -5,6 +5,7 @@
  */
 package org.model;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
@@ -19,14 +20,22 @@ public class Pictogram
     private String _discription                     = null;
     private String _path                            = null;
     
+    private final Image _previewImage;
+    private final Image _activeImage;
+    private final Image _equippedImage;
+    
     private final ImageView _currentImage;
     
     public Pictogram(Image[] _pictoImages)
     {
-        this._image = _pictoImages[0];
+        this._previewImage = _pictoImages[0];
+        this._activeImage = _pictoImages[1];
+        this._equippedImage = _pictoImages[2];
         
         _currentImage = new ImageView();
-        _currentImage.setImage(this._image);
+        _currentImage.setImage(_previewImage);
+        _currentImage.setFitHeight(100);
+        _currentImage.setFitWidth(100);
         _currentImage.setId(this.getClass().getSimpleName() + System.currentTimeMillis());
         
         _currentImage.setOnDragDetected((MouseEvent event) -> {
@@ -37,6 +46,26 @@ public class Pictogram
             db.setContent(content);
             event.consume();
         });
+    }
+    
+    public void putOn() {
+        _currentImage.setImage(_equippedImage);
+    }
+    
+    public void takeOff() {
+        _currentImage.setImage(_previewImage);
+    }
+    
+    private void activate() {
+        _currentImage.setImage(_activeImage);
+    }
+    
+    public String getImageViewId() {
+        return _currentImage.getId();
+    }
+    
+    public Node getNode() {
+        return _currentImage;
     }
 
     public Image getImage() {

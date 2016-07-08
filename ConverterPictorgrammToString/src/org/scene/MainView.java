@@ -12,11 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import org.services.DragAndDropEventHandler;
+
 
 
 /**
@@ -31,11 +32,13 @@ public class MainView
     private Image _image                = null;
     private ImageView _imageView        = null;
     
-    public MainView()
+    public MainView(Pane _targetPane, FlowPane _itemPane)
     {
-        _border = new BorderPane();
-        _border.setTop(generateTopContent());
-        _border.setBottom(generateBottomContent());
+        this._border    = new BorderPane();
+        
+        this._border.setTop(generateTopContent());
+        this._border.setCenter(_targetPane);
+        this._border.setBottom(generateBottomContent(_itemPane));
         
         _mainScene = new Scene(_border, 800, 600);
     }
@@ -55,26 +58,15 @@ public class MainView
         return hbox;
     }
     
-    private FlowPane generateBottomContent()
+    private FlowPane generateBottomContent(FlowPane _flow)
     {
-        FlowPane flow = new FlowPane();
-        flow.setPadding(new Insets(5, 0, 5, 0));
+        _flow.setPadding(new Insets(5, 0, 5, 0));
         //flow.setVgap(4);
-        flow.setHgap(10);
-        flow.setPrefWrapLength(300); // preferred width allows for two columns
-        flow.setStyle("-fx-background-color: DAE6F3;");
+        _flow.setHgap(10);
+        _flow.setPrefWrapLength(300); // preferred width allows for two columns
+        _flow.setStyle("-fx-background-color: DAE6F3;");
         
-        for (int i = 0; i<3;i++)
-        {
-            _image = new Image("images/img01.jpg");
-            _imageView = new ImageView(_image);
-            _imageView.setFitHeight(100);
-            _imageView.setFitWidth(100);
-            _imageView.setOnDragDetected(new DragAndDropEventHandler());
-            flow.getChildren().add(_imageView);
-        }
-        
-        return flow;
+        return _flow;
     }
     
 //    public void setSourceData(ListArray<> _sourceList)
