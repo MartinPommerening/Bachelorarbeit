@@ -29,14 +29,14 @@ public class MainView
 
     private Scene _mainScene            = null;
     private BorderPane _border          = null;
-    private Image _image                = null;
-    private ImageView _imageView        = null;
     
     public MainView(Pane _targetPane, FlowPane _itemPane)
     {
         this._border    = new BorderPane();
         
         this._border.setTop(generateTopContent());
+
+        
         this._border.setCenter(_targetPane);
         this._border.setBottom(generateBottomContent(_itemPane));
         

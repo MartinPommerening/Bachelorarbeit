@@ -5,6 +5,9 @@
  */
 package org.scene;
 
+import images.ImageManager;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -12,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.model.Pictogram;
 
@@ -26,6 +31,7 @@ public class ResultPane {
     private Pane _itemPane;
     private Map<String, Pictogram> _items;
     
+    
     public void setItemsInfo(Pane p, Map<String, Pictogram> m) {
         _itemPane = p;
         _items = m;
@@ -37,7 +43,7 @@ public class ResultPane {
     
     public ResultPane() {
         _resultPane = new Pane();
-        _resultImageView = new ImageView("images/dropHere.jpg");
+        _resultImageView = new ImageView(ImageManager.getImage("dropHere.jpg"));
         
         _resultPane.setOnDragDropped((DragEvent event) -> {
             Dragboard db = event.getDragboard();
@@ -52,8 +58,12 @@ public class ResultPane {
                     // ... the item is removed from the unequipped list
                     // and attached to body.
                     _itemPane.getChildren().remove(picto);
+                    picto.setFitWidth(_resultPane.getMinWidth());
+                    picto.setFitHeight(_resultPane.getMinHeight());
                     _resultPane.getChildren().add(picto);
                     picto.relocate(0, 0);
+                    System.out.println(_items.get(nodeId).getDiscription());
+                   
                     success = true;
                 }
                 // ...anyway, the item is now equipped.

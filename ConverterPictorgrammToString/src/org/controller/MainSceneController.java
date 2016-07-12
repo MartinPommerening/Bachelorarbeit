@@ -97,6 +97,8 @@ public class MainSceneController
                 if (picto != null) {
                     // ... it is removed from target
                     // and added to an source container.
+                    picto.setFitWidth(100);
+                    picto.setFitHeight(100);
                     targetPane.getChildren().remove(picto);
                     _itemPane.getChildren().add(picto);
                     success = true;
