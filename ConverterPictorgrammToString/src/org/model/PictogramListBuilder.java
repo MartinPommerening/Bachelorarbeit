@@ -38,9 +38,21 @@ public class PictogramListBuilder
 
         for (String pictoName : pictogramNames) {
             Pictogram picto = new Pictogram(getPictogramImages(pictoName));
+            picto.setDiscription(createDiscription(pictoName));
             _pictogramList.add(picto);
         }
     }
+     
+     private String createDiscription(String _pictoName)
+     {
+         String disc = new String("Keine Beschreibung vorhanden!");
+         if(_pictoName == "img01.jpg")
+         {
+             disc =  "Das ist aber ein hübscher Junge!";
+         }
+        
+         return disc;
+     }
     
    
     
