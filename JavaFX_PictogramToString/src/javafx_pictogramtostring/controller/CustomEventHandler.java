@@ -14,6 +14,7 @@ import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx_pictogramtostring.service.RuleController;
 import model.Pictogram;
 
 /**
@@ -22,15 +23,19 @@ import model.Pictogram;
  */
 public class CustomEventHandler 
 {
+    private RuleController ruleController = null;
+    
     public CustomEventHandler()
     {
-        
+        ruleController = new RuleController();
     }
     
     public void onDragDetected(Event event,DataFormat dataFormat, ListView<Pictogram> listView)
     {
         String item = listView.getItems().get(listView.getSelectionModel().getSelectedIndex()).toString();
+        
         Dragboard db = listView.startDragAndDrop(TransferMode.MOVE);
+        
         ClipboardContent content = new ClipboardContent();
         System.out.println("Selectet Item" + item);
         // Put the the selected items to the dragboard
@@ -75,13 +80,13 @@ public class CustomEventHandler
             if(event.getSource().hashCode() == 1337822282)
             {
                 // setting the description Text to resultLabel
-                resultLabel.setText(listView.getItems().get(0).getDescription());
+                resultLabel.setText(ruleController.getTextFromList(listView));
             }
             else
             {
                 // setting the resultLabel to default text if the dragEvent hashCode
                 // is not from sourceList to targetList
-                resultLabel.setText("Text here !");
+                resultLabel.setText(ruleController.getTextFromList(listView));
             }
             
             // Data transfer is successful
@@ -101,12 +106,12 @@ public class CustomEventHandler
         TransferMode tm = event.getTransferMode();
         if (tm == TransferMode.MOVE)
         {
-            removeSelectedFruits(listView);
+            removeSelectetItems(listView);
         }
         event.consume();
     }
     
-    private void removeSelectedFruits(ListView<Pictogram> listView)
+    private void removeSelectetItems(ListView<Pictogram> listView)
     {
         // Get all selected Fruits in a separate list to avoid the shared list issue
         ArrayList<Pictogram> selectedList = new ArrayList<>();
@@ -118,6 +123,13 @@ public class CustomEventHandler
         listView.getSelectionModel().clearSelection();
         // Remove items from the selected list
         listView.getItems().removeAll(selectedList);
+    }
+    
+    public void onResetButtonClicked(ListView<Pictogram> sourceListView, ListView<Pictogram> targetListView, Label resultLabel)
+    {
+        targetListView.getItems().clear();
+        sourceListView.setItems(new PictogramListBuilder().getItems());
+        resultLabel.setText("Text here!");
     }
 
 }

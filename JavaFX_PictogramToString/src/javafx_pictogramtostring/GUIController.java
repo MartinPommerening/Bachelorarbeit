@@ -118,5 +118,10 @@ public class GUIController implements Initializable {
         });
         // end initializing targetList listener
         
+        //setting up resetButtonOnClickListener
+        resetButton.setOnMouseClicked((MouseEvent event) -> {
+            _eventHandler.onResetButtonClicked(sourceListView, targetListView, resultLabel);
+        });
+        
     }
 }

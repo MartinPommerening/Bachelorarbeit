@@ -59,6 +59,11 @@ public class Pictogram implements Serializable
         return this._image;
     }
     
+    public String getType()
+    {
+        return this._type;
+    }
+    
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         this._image = SwingFXUtils.toFXImage(ImageIO.read(s), null);
