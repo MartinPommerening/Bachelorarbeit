@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javafx_pictogramtostring;
+package javafx_pictogramtostring.model;
 
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
-import model.Pictogram;
 
 /**
  *

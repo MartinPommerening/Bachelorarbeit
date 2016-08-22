@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javafx_pictogramtostring.controller;
+package javafx_pictogramtostring.service;
 
+import javafx_pictogramtostring.service.PictogramListBuilder;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.scene.control.Label;
@@ -14,8 +15,8 @@ import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx_pictogramtostring.service.RuleController;
-import model.Pictogram;
+import javafx_pictogramtostring.controller.RuleController;
+import javafx_pictogramtostring.model.Pictogram;
 
 /**
  *

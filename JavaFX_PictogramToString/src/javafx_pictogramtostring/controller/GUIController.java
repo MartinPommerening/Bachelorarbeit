@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javafx_pictogramtostring;
+package javafx_pictogramtostring.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,9 +18,10 @@ import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import javafx_pictogramtostring.controller.CustomEventHandler;
-import javafx_pictogramtostring.controller.PictogramListBuilder;
-import model.Pictogram;
+import javafx_pictogramtostring.model.ListViewCell;
+import javafx_pictogramtostring.service.CustomEventHandler;
+import javafx_pictogramtostring.service.PictogramListBuilder;
+import javafx_pictogramtostring.model.Pictogram;
 
 /**
  *
@@ -100,10 +101,10 @@ public class GUIController implements Initializable {
         });
         // end sourceList listener
         
-        // initializing targetList listener
-        targetListView.setOnDragDetected((MouseEvent event) -> {
-            _eventHandler.onDragDetected(event, PICTO_LIST, targetListView);
-        });
+//        // initializing targetList listener
+//        targetListView.setOnDragDetected((MouseEvent event) -> {
+//            _eventHandler.onDragDetected(event, PICTO_LIST, targetListView);
+//        });
         
         targetListView.setOnDragOver((DragEvent event) -> {
             _eventHandler.onDragOver(event, PICTO_LIST, targetListView);
