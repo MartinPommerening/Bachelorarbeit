@@ -15,42 +15,68 @@ import javafx_pictogramtostring.model.Pictogram;
  */
 public class PictogramListBuilder
 {
-    private ObservableList<Pictogram> _pictoList;
+    private ObservableList<Pictogram> _subjectListList;
+    private ObservableList<Pictogram> _predicateList;
+    private ObservableList<Pictogram> _objectList;
     
-    public ObservableList getItems()
+    public ObservableList getSubjcetPictograms()
     {
-        if(_pictoList == null)
+        if(_subjectListList == null)
         {
-            buildPictogramList();
+            buildSubjectPictogramList();
         }
-        return _pictoList;
+        return _subjectListList;
     }
     
-    private void buildPictogramList()
+    public ObservableList getPredicatePictograms()
     {
-        _pictoList = FXCollections.observableArrayList();
-        for(int i = 0; i < 3; i++)
+        if(_predicateList == null)
         {
-            Pictogram picto = new Pictogram("changeTheDiapers", "Windeln wechseln","verb",getPictogramImage("change_the_diapers.png"));
-            _pictoList.add(picto);
+            buildPredicatePictogramList();
         }
-        Pictogram picto = new Pictogram("", "fragezeichen", "Satzzeichen", getPictogramImage("fragezeichen.png"));
-        _pictoList.add(picto);
+        return _predicateList;
     }
+    public ObservableList getObjectPictograms()
+    {
+        if(_objectList == null)
+        {
+            buildObjectPictogramList();
+        }
+        return _objectList;
+    }
+    
+    private void buildSubjectPictogramList()
+    {}
+    
+    private void buildPredicatePictogramList()
+    {
+        _predicateList = FXCollections.observableArrayList();
+        Pictogram picto = new Pictogram("Windeln wechseln","verb",getPictogramImage("change_the_diapers.png"));
+        Pictogram picto1 = new Pictogram("einkaufen","verb",getPictogramImage("einkaufen.png"));
+        Pictogram picto2 = new Pictogram("parken","verb",getPictogramImage("parken.png"));
+        Pictogram picto3 = new Pictogram("trinken","verb",getPictogramImage("trinken.png"));
+        
+        _predicateList.addAll(picto,picto1,picto2,picto3);
+    }
+    
+    private void buildObjectPictogramList()
+    {}
+    
+//    private void buildPictogramList()
+//    {
+//        _pictoList = FXCollections.observableArrayList();
+//        for(int i = 0; i < 3; i++)
+//        {
+//            Pictogram picto = new Pictogram("Windeln wechseln","verb",getPictogramImage("change_the_diapers.png"));
+//            _pictoList.add(picto);
+//        }
+//        Pictogram picto = new Pictogram("", "fragezeichen", "Satzzeichen", getPictogramImage("fragezeichen.png"));
+//        _pictoList.add(picto);
+//    }
     
     private Image getPictogramImage(String name)
     {
         Image pictogramImage = ImageManager.getImage("Images/"+name);
         return pictogramImage;
     }
-    
-    public void removeAll(ObservableList obList)
-    {
-        this._pictoList.removeAll(obList);
-    }
-    
-    public void removeItem(Pictogram item)
-    {
-        this._pictoList.remove(item);
-    }  
 }

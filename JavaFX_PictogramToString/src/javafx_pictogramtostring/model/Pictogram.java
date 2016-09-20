@@ -21,7 +21,6 @@ import javax.imageio.ImageIO;
 public class Pictogram implements Serializable
 {
     private static final long   serialVersionUID = 1L;
-    private String              _name;
     private String              _description;
     private transient Image     _image;
     private String              _type;
@@ -31,22 +30,11 @@ public class Pictogram implements Serializable
     }
 
             
-    public Pictogram(String name, String description, String type, Image image)
+    public Pictogram(String description, String type, Image image)
     {
-        this._name          = name;
         this._description   = description;
         this._type          = type;
         this._image         = image;
-    }
-    
-    public String getName()
-    {
-        return this._name;
-    }
-    
-    public void setName(String name)
-    {
-        this._name = name;
     }
     
     public String getDescription()
