@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package javafx_pictogramtostring.service;
-import javafx_pictogramtostring.service.ImageManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -53,7 +52,5 @@ public class PictogramListBuilder
     public void removeItem(Pictogram item)
     {
         this._pictoList.remove(item);
-    }
-
-    
+    }  
 }

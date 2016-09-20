@@ -5,7 +5,6 @@
  */
 package javafx_pictogramtostring.service;
 
-import javafx_pictogramtostring.service.PictogramListBuilder;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.scene.control.Label;
