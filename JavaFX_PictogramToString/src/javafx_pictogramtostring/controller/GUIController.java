@@ -41,7 +41,8 @@ public class GUIController implements Initializable {
     @FXML
     private Button resetButton;
     
-    private PictogramListBuilder sourceListItems;
+    
+    private PictogramListBuilder _pictogramListBuilder;
     
     static final DataFormat PICTO_LIST = new DataFormat("PictoList");
     
@@ -49,15 +50,16 @@ public class GUIController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        sourceListItems = new PictogramListBuilder();
-        _eventHandler = new CustomEventHandler();
+        _pictogramListBuilder   = new PictogramListBuilder();
+        _eventHandler           = new CustomEventHandler();
+        
         initializeListView();
         initializeListener();
     } 
     
     private void initializeListView()
     {
-        sourceListView.setItems(sourceListItems.getItems());
+        //sourceListView.setItems(sourceListItems.getItems());
         sourceListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         
         sourceListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()

@@ -128,7 +128,7 @@ public class CustomEventHandler
     public void onResetButtonClicked(ListView<Pictogram> sourceListView, ListView<Pictogram> targetListView, Label resultLabel)
     {
         targetListView.getItems().clear();
-        sourceListView.setItems(new PictogramListBuilder().getItems());
+        //sourceListView.setItems(new PictogramListBuilder().getItems());
         resultLabel.setText("Text here!");
     }
 
