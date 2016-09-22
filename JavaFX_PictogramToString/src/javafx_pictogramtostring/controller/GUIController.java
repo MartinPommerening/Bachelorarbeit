@@ -30,23 +30,29 @@ import javafx_pictogramtostring.model.Pictogram;
 public class GUIController implements Initializable {
     
     @FXML
-    private ListView sourceListView;
+    private ListView _subjecListView;
     
     @FXML
-    private ListView targetListView;
+    private ListView _predicateListView;
+    
+    @FXML
+    private ListView _objectListView;
+    
+    @FXML
+    private ListView _targetListView;
     
     @FXML 
-    private Label resultLabel;
+    private Label _resultLabel;
     
     @FXML
-    private Button resetButton;
+    private Button _resetButton;
     
     
-    private PictogramListBuilder _pictogramListBuilder;
+    private PictogramListBuilder    _pictogramListBuilder;
     
-    static final DataFormat PICTO_LIST = new DataFormat("PictoList");
+    static final DataFormat         PICTO_LIST = new DataFormat("PictoList");
     
-    private CustomEventHandler _eventHandler;
+    private CustomEventHandler      _eventHandler;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,10 +65,22 @@ public class GUIController implements Initializable {
     
     private void initializeListView()
     {
-        //sourceListView.setItems(sourceListItems.getItems());
-        sourceListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        //_subjecListView.setItems(_pictogramListBuilder.getSubjcetPictograms());
+        //_subjecListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         
-        sourceListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
+//        _subjecListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
+//        {
+//            @Override
+//            public ListCell<Pictogram> call(ListView<Pictogram> listView)
+//            {
+//                return new ListViewCell();
+//            }
+//        });
+        
+        _predicateListView.setItems(_pictogramListBuilder.getPredicatePictograms());
+        _predicateListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
+        _predicateListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
         {
             @Override
             public ListCell<Pictogram> call(ListView<Pictogram> listView)
@@ -71,9 +89,31 @@ public class GUIController implements Initializable {
             }
         });
         
-        targetListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        _predicateListView.setItems(_pictogramListBuilder.getPredicatePictograms());
+        _predicateListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         
-        targetListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
+        _predicateListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
+        {
+            @Override
+            public ListCell<Pictogram> call(ListView<Pictogram> listView)
+            {
+                return new ListViewCell();
+            }
+        });
+        
+        _objectListView.setItems(_pictogramListBuilder.getObjectPictograms());
+        _objectListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
+        _objectListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
+        {
+            @Override
+            public ListCell<Pictogram> call(ListView<Pictogram> listView)
+            {
+                return new ListViewCell();
+            }
+        });
+        
+        _targetListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
         {
             @Override
             public ListCell<Pictogram> call(ListView<Pictogram> listView)
@@ -86,44 +126,50 @@ public class GUIController implements Initializable {
     private void initializeListener()
     {
         // start sourceList listener
-        sourceListView.setOnDragDetected((MouseEvent event) -> {
-            _eventHandler.onDragDetected(event, PICTO_LIST, sourceListView);
+        _predicateListView.setOnDragDetected((MouseEvent event) -> {
+            _eventHandler.onDragDetected(event, PICTO_LIST, _predicateListView);
         });
         
-        sourceListView.setOnDragOver((DragEvent event) ->{
-            _eventHandler.onDragOver(event, PICTO_LIST, sourceListView);
+        _predicateListView.setOnDragOver((DragEvent event) ->{
+            _eventHandler.onDragOver(event, PICTO_LIST, _predicateListView);
         });
         
-        sourceListView.setOnDragDropped((DragEvent event) -> {
-            _eventHandler.onDragDropped(event, PICTO_LIST, sourceListView, resultLabel);
-        });
-        
-        sourceListView.setOnDragDone((DragEvent event) -> {
-            _eventHandler.onDragDone(event, sourceListView);
+        _predicateListView.setOnDragDone((DragEvent event) -> {
+            _eventHandler.onDragDone(event, _predicateListView);
         });
         // end sourceList listener
         
-//        // initializing targetList listener
-//        targetListView.setOnDragDetected((MouseEvent event) -> {
-//            _eventHandler.onDragDetected(event, PICTO_LIST, targetListView);
-//        });
-        
-        targetListView.setOnDragOver((DragEvent event) -> {
-            _eventHandler.onDragOver(event, PICTO_LIST, targetListView);
+        // start sourceList listener
+        _objectListView.setOnDragDetected((MouseEvent event) -> {
+            _eventHandler.onDragDetected(event, PICTO_LIST, _objectListView);
         });
         
-        targetListView.setOnDragDropped((DragEvent event) -> {
-            _eventHandler.onDragDropped(event, PICTO_LIST, targetListView, resultLabel);
+        _objectListView.setOnDragOver((DragEvent event) ->{
+            _eventHandler.onDragOver(event, PICTO_LIST, _objectListView);
         });
         
-        targetListView.setOnDragDone((DragEvent event) -> {
-            _eventHandler.onDragDone(event, targetListView);
+        _objectListView.setOnDragDone((DragEvent event) -> {
+            _eventHandler.onDragDone(event, _objectListView);
+        });
+        // end sourceList listener
+        
+        
+        _targetListView.setOnDragOver((DragEvent event) -> {
+            _eventHandler.onDragOver(event, PICTO_LIST, _targetListView);
+        });
+        
+        _targetListView.setOnDragDropped((DragEvent event) -> {
+            _eventHandler.onDragDropped(event, PICTO_LIST, _targetListView, _resultLabel);
+        });
+        
+        _targetListView.setOnDragDone((DragEvent event) -> {
+            _eventHandler.onDragDone(event, _targetListView);
         });
         // end initializing targetList listener
         
         //setting up resetButtonOnClickListener
-        resetButton.setOnMouseClicked((MouseEvent event) -> {
-            _eventHandler.onResetButtonClicked(sourceListView, targetListView, resultLabel);
+        _resetButton.setOnMouseClicked((MouseEvent event) -> {
+            _eventHandler.onResetButtonClicked(_predicateListView,_subjecListView,_objectListView, _targetListView, _resultLabel);
         });
         
     }

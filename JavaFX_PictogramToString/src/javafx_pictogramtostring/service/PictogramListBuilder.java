@@ -60,7 +60,11 @@ public class PictogramListBuilder
     }
     
     private void buildObjectPictogramList()
-    {}
+    {
+        _objectList = FXCollections.observableArrayList();
+        Pictogram picto = new Pictogram("markiert eine Frage","fragezeichen",getPictogramImage("fragezeichen.png"));
+        _objectList.add(picto);
+    }
     
 //    private void buildPictogramList()
 //    {

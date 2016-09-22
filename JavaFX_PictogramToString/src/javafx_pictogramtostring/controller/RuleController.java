@@ -30,19 +30,18 @@ public class RuleController
     
     private String checkResultList(ListView<Pictogram> resultList)
     {
-        
         if(resultList.getItems().size() == 1)
         {
             return resultList.getItems().get(0).getDescription();
         }
+        
         else if(resultList.getItems().size() == 2)
         {
             if(resultList.getItems().get(0).getType().equalsIgnoreCase("verb") 
-                && resultList.getItems().get(1).getType().equalsIgnoreCase("Satzzeichen"))
+                && resultList.getItems().get(1).getType().equalsIgnoreCase("fragezeichen"))
             {
                 return "Wo kann ich "+ resultList.getItems().get(0).getDescription()+"?";
             }
-            
         }
         return "TextHere!";   
     }

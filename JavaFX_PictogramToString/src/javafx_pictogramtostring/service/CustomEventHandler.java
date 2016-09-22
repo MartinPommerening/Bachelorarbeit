@@ -75,20 +75,9 @@ public class CustomEventHandler
             ArrayList<Pictogram> list = (ArrayList<Pictogram>)dragboard.getContent(dataFormat);
             listView.getItems().addAll(list);
             
-            System.out.println(event.getSource().hashCode());
-            // getting the hashCode for dragEvent from sourceList to targetList
-            if(event.getSource().hashCode() == 1337822282)
-            {
-                // setting the description Text to resultLabel
-                resultLabel.setText(ruleController.getTextFromList(listView));
-            }
-            else
-            {
-                // setting the resultLabel to default text if the dragEvent hashCode
-                // is not from sourceList to targetList
-                resultLabel.setText(ruleController.getTextFromList(listView));
-            }
-            
+            // setting the description Text to resultLabel
+            resultLabel.setText(ruleController.getTextFromList(listView));
+       
             // Data transfer is successful
             dragCompleted = true;
         }
@@ -125,10 +114,15 @@ public class CustomEventHandler
         listView.getItems().removeAll(selectedList);
     }
     
-    public void onResetButtonClicked(ListView<Pictogram> sourceListView, ListView<Pictogram> targetListView, Label resultLabel)
+    public void onResetButtonClicked(ListView<Pictogram> predicateListView, ListView<Pictogram> subjcetListView,
+                                     ListView<Pictogram> objectListView, ListView<Pictogram> targetListView, Label resultLabel)
     {
         targetListView.getItems().clear();
-        //sourceListView.setItems(new PictogramListBuilder().getItems());
+        
+        //subjcetListView.setItems(new PictogramListBuilder().getSubjcetPictograms());
+        predicateListView.setItems(new PictogramListBuilder().getPredicatePictograms());
+        objectListView.setItems(new PictogramListBuilder().getObjectPictograms());
+        
         resultLabel.setText("Text here!");
     }
 
