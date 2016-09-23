@@ -61,9 +61,4 @@ public class Pictogram implements Serializable
         s.defaultWriteObject();
         ImageIO.write(SwingFXUtils.fromFXImage(this._image, null), "png", s);
     }
-    
-//    public String getType()
-//    {
-//        return this._type;
-//    }
 }
