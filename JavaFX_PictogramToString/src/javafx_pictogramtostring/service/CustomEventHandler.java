@@ -37,7 +37,7 @@ public class CustomEventHandler
         Dragboard db = listView.startDragAndDrop(TransferMode.MOVE);
         
         ClipboardContent content = new ClipboardContent();
-        System.out.println("Selectet Item" + item);
+        
         // Put the the selected items to the dragboard
         ArrayList<Pictogram> selectedItems = new ArrayList<>(listView.getSelectionModel().getSelectedItems());
         if (item != null) {
@@ -45,6 +45,8 @@ public class CustomEventHandler
             db.setContent(content);
             event.consume();
         }
+        else 
+        {return;}
     }
     
     public void onDragOver(DragEvent event,DataFormat dataFormat, ListView<Pictogram> listView)
