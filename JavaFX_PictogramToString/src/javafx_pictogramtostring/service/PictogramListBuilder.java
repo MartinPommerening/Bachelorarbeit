@@ -15,17 +15,18 @@ import javafx_pictogramtostring.model.Pictogram;
  */
 public class PictogramListBuilder
 {
-    private ObservableList<Pictogram> _subjectListList;
+    private ObservableList<Pictogram> _subjectList;
     private ObservableList<Pictogram> _predicateList;
     private ObservableList<Pictogram> _objectList;
     
+    
     public ObservableList getSubjcetPictograms()
     {
-        if(_subjectListList == null)
+        if(_subjectList == null)
         {
             buildSubjectPictogramList();
         }
-        return _subjectListList;
+        return _subjectList;
     }
     
     public ObservableList getPredicatePictograms()
@@ -46,7 +47,11 @@ public class PictogramListBuilder
     }
     
     private void buildSubjectPictogramList()
-    {}
+    {
+        _subjectList = FXCollections.observableArrayList();
+        Pictogram picto = new Pictogram("Wir","subject",getPictogramImage("familie.png"));
+        _subjectList.add(picto);
+    }
     
     private void buildPredicatePictogramList()
     {
@@ -63,7 +68,9 @@ public class PictogramListBuilder
     {
         _objectList = FXCollections.observableArrayList();
         Pictogram picto = new Pictogram("markiert eine Frage","fragezeichen",getPictogramImage("fragezeichen.png"));
-        _objectList.add(picto);
+        Pictogram picto1 = new Pictogram("Zug","object",getPictogramImage("zug.png"));
+        Pictogram picto2 = new Pictogram("Bus","object",getPictogramImage("bus.png"));
+        _objectList.addAll(picto,picto1,picto2);
     }
     
 //    private void buildPictogramList()

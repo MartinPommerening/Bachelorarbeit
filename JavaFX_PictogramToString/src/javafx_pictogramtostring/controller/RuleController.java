@@ -42,6 +42,16 @@ public class RuleController
             {
                 return "Wo kann ich "+ resultList.getItems().get(0).getDescription()+"?";
             }
+            else if(resultList.getItems().get(0).getType().equalsIgnoreCase("subject") 
+                && resultList.getItems().get(1).getType().equalsIgnoreCase("verb"))
+            {
+                return "Wir wollen "+ resultList.getItems().get(1).getDescription();
+            }
+            else if(resultList.getItems().get(0).getType().equalsIgnoreCase("subject") 
+                && resultList.getItems().get(1).getType().equalsIgnoreCase("object"))
+            {
+                return "Wir wollen "+ resultList.getItems().get(1).getDescription()+ "fahren";
+            }
         }
         return "TextHere!";   
     }

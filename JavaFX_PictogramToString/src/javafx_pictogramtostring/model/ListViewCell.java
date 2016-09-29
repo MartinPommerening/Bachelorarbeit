@@ -20,12 +20,11 @@ public class ListViewCell extends ListCell<Pictogram>
         super.updateItem(item,empty);
         if(item == null || empty)
         {
-            // ToDo set Data in listCell
             setGraphic(null);
         }
         else
         {
-            // ToDo set Data in listCell
+            //set Data in listCell
             ImageView imageView = new ImageView(item.getImage());
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);

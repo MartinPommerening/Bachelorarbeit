@@ -6,6 +6,7 @@
 package javafx_pictogramtostring.service;
 
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -32,16 +33,20 @@ public class CustomEventHandler
     
     public void onDragDetected(Event event,DataFormat dataFormat, ListView<Pictogram> listView)
     {
-        String item = listView.getItems().get(listView.getSelectionModel().getSelectedIndex()).toString();
+        //String item = listView.getItems().get(listView.getSelectionModel().getSelectedIndex()).toString();
+        
+        //.....do other things
         
         Dragboard db = listView.startDragAndDrop(TransferMode.MOVE);
         
         ClipboardContent content = new ClipboardContent();
         
-        // Put the the selected items to the dragboard
-        ArrayList<Pictogram> selectedItems = new ArrayList<>(listView.getSelectionModel().getSelectedItems());
-        if (item != null) {
-            content.put(dataFormat, selectedItems);
+        // Put the the selected item to the dragboard
+
+        Pictogram selectedItem = listView.getSelectionModel().getSelectedItem();
+        
+        if (selectedItem != null) {
+            content.put(dataFormat, selectedItem);
             db.setContent(content);
             event.consume();
         }
@@ -74,8 +79,8 @@ public class CustomEventHandler
         {
             // getting all items from the Event Dragboard
             // and building an ArrayList<Pictogram>
-            ArrayList<Pictogram> list = (ArrayList<Pictogram>)dragboard.getContent(dataFormat);
-            listView.getItems().addAll(list);
+            Pictogram item = (Pictogram)dragboard.getContent(dataFormat);
+            listView.getItems().add(item);
             
             // setting the description Text to resultLabel
             resultLabel.setText(ruleController.getTextFromList(listView));
@@ -119,12 +124,16 @@ public class CustomEventHandler
     public void onResetButtonClicked(ListView<Pictogram> predicateListView, ListView<Pictogram> subjcetListView,
                                      ListView<Pictogram> objectListView, ListView<Pictogram> targetListView, Label resultLabel)
     {
+        
+        // bereinigen der Ergebnisliste
         targetListView.getItems().clear();
         
-        //subjcetListView.setItems(new PictogramListBuilder().getSubjcetPictograms());
+        //befüllen der einzelnen source Listen, mit allen zugehörigen Elementen
+        subjcetListView.setItems(new PictogramListBuilder().getSubjcetPictograms());
         predicateListView.setItems(new PictogramListBuilder().getPredicatePictograms());
         objectListView.setItems(new PictogramListBuilder().getObjectPictograms());
         
+        // setzen eines default Textes
         resultLabel.setText("Text here!");
     }
 

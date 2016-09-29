@@ -7,6 +7,7 @@ package javafx_pictogramtostring.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -30,7 +31,7 @@ import javafx_pictogramtostring.model.Pictogram;
 public class GUIController implements Initializable {
     
     @FXML
-    private ListView _subjecListView;
+    private ListView _subjectListView;
     
     @FXML
     private ListView _predicateListView;
@@ -65,22 +66,11 @@ public class GUIController implements Initializable {
     
     private void initializeListView()
     {
-        //_subjecListView.setItems(_pictogramListBuilder.getSubjcetPictograms());
-        //_subjecListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        //initialize subjectListView
+        _subjectListView.setItems(_pictogramListBuilder.getSubjcetPictograms());
+        _subjectListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         
-//        _subjecListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
-//        {
-//            @Override
-//            public ListCell<Pictogram> call(ListView<Pictogram> listView)
-//            {
-//                return new ListViewCell();
-//            }
-//        });
-        
-        _predicateListView.setItems(_pictogramListBuilder.getPredicatePictograms());
-        _predicateListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        
-        _predicateListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
+        _subjectListView.setCellFactory(new Callback<ListView<Pictogram>,ListCell<Pictogram>>()
         {
             @Override
             public ListCell<Pictogram> call(ListView<Pictogram> listView)
@@ -88,6 +78,7 @@ public class GUIController implements Initializable {
                 return new ListViewCell();
             }
         });
+        // end initialize SubjectListView
         
         _predicateListView.setItems(_pictogramListBuilder.getPredicatePictograms());
         _predicateListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -125,6 +116,20 @@ public class GUIController implements Initializable {
     
     private void initializeListener()
     {
+        // start initialize subjectList listener
+        _subjectListView.setOnDragDetected((MouseEvent event) -> {
+            _eventHandler.onDragDetected(event, PICTO_LIST, _subjectListView);
+        });
+        
+        _subjectListView.setOnDragOver((DragEvent event) ->{
+            _eventHandler.onDragOver(event, PICTO_LIST, _subjectListView);
+        });
+        
+        _subjectListView.setOnDragDone((DragEvent event) -> {
+            _eventHandler.onDragDone(event, _subjectListView);
+        });
+        // end initialize subjectList listener
+        
         // start sourceList listener
         _predicateListView.setOnDragDetected((MouseEvent event) -> {
             _eventHandler.onDragDetected(event, PICTO_LIST, _predicateListView);
@@ -169,8 +174,8 @@ public class GUIController implements Initializable {
         
         //setting up resetButtonOnClickListener
         _resetButton.setOnMouseClicked((MouseEvent event) -> {
-            _eventHandler.onResetButtonClicked(_predicateListView,_subjecListView,_objectListView, _targetListView, _resultLabel);
+            _eventHandler.onResetButtonClicked(_predicateListView,_subjectListView,_objectListView, _targetListView, _resultLabel);
         });
         
-    }
+    } 
 }
