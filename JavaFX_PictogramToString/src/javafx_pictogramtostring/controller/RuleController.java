@@ -50,7 +50,12 @@ public class RuleController
             else if(resultList.getItems().get(0).getType().equalsIgnoreCase("subject") 
                 && resultList.getItems().get(1).getType().equalsIgnoreCase("object"))
             {
-                return "Wir wollen "+ resultList.getItems().get(1).getDescription()+ "fahren";
+                return "Wir wollen "+ resultList.getItems().get(1).getDescription()+ " fahren";
+            }
+            else if(resultList.getItems().get(0).getType().equalsIgnoreCase("subject") 
+                && resultList.getItems().get(1).getType().equalsIgnoreCase("fragezeichen"))
+            {
+                return "Was wollen "+ resultList.getItems().get(0).getDescription()+ " tun?";
             }
         }
         return "TextHere!";   
